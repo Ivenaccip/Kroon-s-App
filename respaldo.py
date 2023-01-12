@@ -12,8 +12,8 @@ class TreeviewFrame(ttk.Frame):
             yscrollcommand=self.vscrollbar.set
         )
         self.vscrollbar.config(command=self.treeview.yview)
-        self.vscrollbar.grid(row = 1, column=2, sticky='ns')
-        self.treeview.grid(row = 1, column=0)
+        self.vscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.treeview.pack(fill="x")
 
 def selectItem():
     links_list = []
@@ -33,25 +33,13 @@ def selectItem():
     with open("names_seleccionados.txt", "w") as g:
         g.write(json_str_names)
 
-def checkbuttons(root):
-    all_inf = tk.Checkbutton(root, text = "Select All Influencers")
-    all_inf.grid(row = 0, column=0)
-    all_links = tk.Checkbutton(root, text = "Select All Links")
-    all_links.grid(row = 0, column=1)
-    all_inf = tk.Checkbutton(root, text = "Select All Influencers")
-    all_inf.grid(row = 0, column=0)
-    all_links = tk.Checkbutton(root, text = "Select All Brands")
-    all_links.grid(row = 0, column=3)
-
 root = tk.Tk()
-width_s = root.winfo_screenwidth()
-height_s = root.winfo_screenheight()
-root.geometry("%dx%d"  %(width_s, height_s))
-checkbuttons(root)
+width = root.winfo_screenwidth()
+height = root.winfo_screenheight()
+root.geometry("%dx%d"  %(width, height))
+
 treeview_frame = TreeviewFrame()
-espacio = tk.Frame()
-espacio.grid(row = 1, column=1)
-treeview_frame.grid(row=1, column=0, columnspan=2)
+treeview_frame.pack(fill="x")
 treeview_frame.treeview.config(columns=("name", "ligas"), show="headings")
 treeview_frame.treeview.heading("name", text="Influencers")
 treeview_frame.treeview.heading("ligas", text="Links")
@@ -65,5 +53,5 @@ for node in objeto:
 
 #Botón seleccionados
 btn_get = tk.Button(root, text="Get data", command=selectItem)
-btn_get.grid(row=2, column=1, columnspan= 2)
+btn_get.pack()
 root.mainloop()

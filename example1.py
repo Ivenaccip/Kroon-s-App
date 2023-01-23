@@ -61,8 +61,10 @@ treeview_frame.treeview.heading("ligas", text="Links")
 #treeview brands
 tf3 = CheckboxTreeview(root)
 tf3.grid(row = 1, column=3)
-for i in hashtags.keys():
-    tf3.insert("", "end", f"{i}", text = f"{i}")
+for key, values in hashtags.items():
+    parent = tf3.insert("", "end", key, text = key)
+    for value in values:
+        tf3.insert(parent, "end", value, text = value)
 
 tf3_scroll = ttk.Scrollbar(orient=tk.VERTICAL)
 tf3_scroll.config(command=tf3.yview)

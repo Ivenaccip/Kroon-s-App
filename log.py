@@ -29,7 +29,7 @@ class load(unittest.TestCase):
         driver.get(self.primer_pagina)
         sleep(self._tiempo_primer_pagina)
 
-    def test_instagram(self):
+    def test_instagram(self, primer_objeto):
         def login(self):
             driver = self.driver
             login_button = driver.find_element(By.PARTIAL_LINK_TEXT, 'Iniciar sesión')
@@ -49,6 +49,7 @@ class load(unittest.TestCase):
                 sleep(8)
                 print("exito")
             except:
+                #Por reparar
                 print('No se pudo entrar')
             noguardar(self)
         def noguardar(self):
@@ -73,7 +74,7 @@ class load(unittest.TestCase):
             except:
                 print("No captcha")
                 pass
-            driver.get("https://www.instagram.com/shifrajumelet/?hl=nl")
+            driver.get(primer_objeto)
             sleep(5)
             try:
                 links = driver.find_elements(By.XPATH, "//div[@class = '_aabd _aa8k _aanf']/a")

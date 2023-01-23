@@ -5,25 +5,28 @@ import json
 class UI_Scrape:
 
 #Hace falta crear un nuevo frame padre y de este poner hasta abajo el botón
-
+    """  
     def run(self, ventana):
-        
-        loging = load()
-
-        def correr():
-            with open("seleccionado.txt", "w") as f:
-                perfiles = f.read()
-            obj_perfiles = json.loads(perfiles)
-            print(len(obj_perfiles))
-            loging.setUp()
-            loging.test_instagram()
-            loging.tearDown()
 
         self.ventana = ventana
         boton_run = Button(ventana, text="RUN!" , command = correr)
         boton_run.grid(row  = 150,column = 1,sticky=S)
         boton_run.config(padx=20)
-    
+        """
+
+
+def correr():
+    loging = load()
+    with open("links_seleccionados.txt", "r") as h:
+        leer = h.read()
+    obj_perfiles = json.loads(leer)
+    primer_objeto = obj_perfiles[0]
+    print(len(obj_perfiles))
+    loging.setUp()
+    loging.test_instagram(primer_objeto)
+    loging.tearDown()
+
+
 class Scroll:
     
     def scroll(self, ventana):

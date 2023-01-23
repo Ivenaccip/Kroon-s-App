@@ -5,6 +5,7 @@ import os
 from PIL import ImageTk, Image
 from ttkwidgets import CheckboxTreeview
 from diccionario_hashtags import *
+from scrape_ui import correr
 
 class TreeviewFrame(ttk.Frame):
     def __init__(self, *args, **kwargs):
@@ -20,8 +21,10 @@ class TreeviewFrame(ttk.Frame):
         self.treeview.grid(row = 1, column=0)
 
 def selectItem():
+    ui_t = correr()
     links_list = []
     names_list = []
+
     selected_item = treeview_frame.treeview.selection()
     for item in selected_item:
         current_item = treeview_frame.treeview.item(item)
@@ -36,6 +39,14 @@ def selectItem():
     json_str_names = json.dumps(names_list)
     with open("names_seleccionados.txt", "w") as g:
         g.write(json_str_names)
+
+    ui_t
+
+def PrimerItem():
+    with open("links_seleccionados.txt", "r") as h:
+        leer = h.read()
+        objeto_leer = json.loads(leer)
+        return objeto_leer[0]  # devuelve el primer elemento de la lista
 
 def checkbuttons(root):
     all_inf = tk.Checkbutton(root, text = "Select All Influencers")

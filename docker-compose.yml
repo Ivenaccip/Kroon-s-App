@@ -1,0 +1,7 @@
+services:
+  app-kroon:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumenes:
+      - .:/app

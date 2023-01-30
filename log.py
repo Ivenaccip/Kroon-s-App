@@ -17,6 +17,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import NoSuchElementException
 import xlsxwriter
 import random
+from warning_b import warning_boton, x_item
 
 class load(unittest.TestCase):
     def __init__(self):
@@ -50,6 +51,12 @@ class load(unittest.TestCase):
                 print("exito")
             except:
                 #Por reparar
+                warning_boton()
+                print('Paso por aqui')
+                xpath_botton = x_item()
+                inicio = driver.find_element(By.XPATH, f"//button[@class = '{xpath_botton}']")
+                inicio.click()
+                sleep(8)
                 print('No se pudo entrar')
             noguardar(self)
         def noguardar(self):
